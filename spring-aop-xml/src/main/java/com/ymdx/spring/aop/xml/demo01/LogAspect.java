@@ -1,8 +1,6 @@
 package com.ymdx.spring.aop.xml.demo01;
 
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.*;
-import org.springframework.stereotype.Component;
 
 /**
  * @ClassName: LogAspect
@@ -12,8 +10,6 @@ import org.springframework.stereotype.Component;
  * @Date: 2020-01-07 16:22
  * @Version: 1.0
  **/
-@Component
-@Aspect
 public class LogAspect {
 
     /**

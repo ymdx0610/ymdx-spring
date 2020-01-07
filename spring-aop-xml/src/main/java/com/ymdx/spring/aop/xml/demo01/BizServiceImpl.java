@@ -12,7 +12,7 @@ public class BizServiceImpl implements BizService {
 
     @Override
     public void process() {
-        int a = 1/0;
+//        int a = 1/0;
         System.out.println("正在处理业务逻辑...");
     }
 
