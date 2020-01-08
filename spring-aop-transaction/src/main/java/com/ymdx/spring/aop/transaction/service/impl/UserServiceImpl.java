@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @ClassName: UserServiceImpl
@@ -65,6 +66,20 @@ public class UserServiceImpl implements UserService {
         int ymdx002 = jdbcTemplate.update(sql, "ymdx002", 19);
         if (ymdx002 > 0)
             System.out.println("ymdx002插入成功！");
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void add2(){
+        String sql = "insert into t_user(name, age) values(?, ?);";
+        int ymdx003 = jdbcTemplate.update(sql, "ymdx003", 20);
+        if (ymdx003 > 0)
+            System.out.println("ymdx003插入成功！");
+        int a = 1 / 0;
+        System.out.println("--------------------------");
+        int ymdx004 = jdbcTemplate.update(sql, "ymdx004", 21);
+        if (ymdx004 > 0)
+            System.out.println("ymdx004插入成功！");
     }
 
 }

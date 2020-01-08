@@ -16,7 +16,11 @@ public class Main {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("spring-aop.xml");
         UserService userService = (UserService) classPathXmlApplicationContext.getBean("userService");
-        userService.add();
+        // 通过aop封装的编程事务
+//        userService.add();
+
+        // @Transactional 声明式事务
+        userService.add2();
     }
 
 }

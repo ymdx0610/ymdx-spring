@@ -59,6 +59,7 @@
         <module>spring-aop-annotation</module>
         <module>spring-aop-xml</module>
         <module>spring-aop-transaction</module>
+        <module>spring-aop-transaction-customize</module>
     </modules>
 
     <!-- 只定义依赖的版本，不会实际依赖 -->

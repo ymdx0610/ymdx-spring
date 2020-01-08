@@ -200,14 +200,16 @@ TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 
 用法：  
 ```java
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public void add() {
-    userDao.add("ymdx", 30);
-    int i = 1 / 0;
-    System.out.println("我是add方法");
-    userDao.add("zhangsan", 28);
+    String sql = "insert into t_user(name, age) values(?, ?);";
+    int ymdx001 = jdbcTemplate.update(sql, "ymdx001", 18);
+    if (ymdx001 > 0)
+        System.out.println("ymdx001插入成功！");
 }
 ```
+> 示例项目：ymdx-spring -> spring-aop-transaction
+
 
 #### 手写Spring注解版本事务
 - 注解  
@@ -252,7 +254,7 @@ LOCAL_VARIABLE：用于描述局部变量
 METHOD：用于描述方法  
 PACKAGE：用于描述包  
 PARAMETER：用于描述参数  
-TYPE：用于描述类、接口(包括注解类型) 或enum声明 
+TYPE：用于描述类、接口（包括注解类型）或enum声明 
 ```
 2、@Retention  
 表示需要在什么级别保存该注释信息，用于描述注解的生命周期（即：被描述的注解在什么范围内有效）  
@@ -272,7 +274,42 @@ public @interface AddAnnotation {
 }
 ```
 反射读取注解信息  
-> 示例代码：  
+```java
+@Target({ElementType.ANNOTATION_TYPE,ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MyAnnotation {
+
+    String name() default "ymdx2020";
+    int age() default 30;
+
+}
+
+public class MyAnnotationDemo {
+
+    @MyAnnotation // (name = "test001", age = 1)
+    public void test(){
+
+    }
+
+    public static void main(String[] args) {
+        try {
+            Class<?> cls = Class.forName("com.ymdx.spring.aop.transaction.annotation.MyAnnotationDemo");
+            Method[] methods = cls.getDeclaredMethods();
+            for(Method method : methods){
+                MyAnnotation myAnnotation = method.getDeclaredAnnotation(MyAnnotation.class);
+                if(null == myAnnotation)
+                    continue;
+                String name = myAnnotation.name();
+                int age = myAnnotation.age();
+                System.out.printf("name = " + name + "; age = " + age);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+}
+```  
 
 自定义事务注解  
 
