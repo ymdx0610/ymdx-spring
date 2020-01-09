@@ -79,12 +79,12 @@ public class TransactionAspect {
      * @throws NoSuchMethodException
      */
     private ExtTransactional getExtTransactional(ProceedingJoinPoint pjp) throws NoSuchMethodException {
-        // 获取方法名称
+        // 获取目标对象方法名称
         String methodName = pjp.getSignature().getName();
-        // 获取目标对象
-        Class<?> targetClass = pjp.getTarget().getClass();
         // 获取目标对象方法参数类型
         Class<?>[] parameterTypes = ((MethodSignature) pjp.getSignature()).getParameterTypes();
+        // 获取目标对象
+        Class<?> targetClass = pjp.getTarget().getClass();
         // 获取目标对象方法
         Method targetObjMethod = targetClass.getMethod(methodName, parameterTypes);
         // 判断是否有自定义事务注解
