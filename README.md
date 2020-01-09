@@ -311,11 +311,16 @@ public class MyAnnotationDemo {
 }
 ```  
 
-自定义事务注解  
+自定义事务注解，自定义@MyTransactional，实现Spring自带的@Transactional一样的功能  
+步骤：  
+1. 定义事务注解   
+2. 封装编程式事务  
+3. 扫包，定义一个事务扫包AOP（具体拦截哪些方法）  
+4. 拦截方法的时候，使用反射技术判断该方法上是否有事务注解，若有，则开启事务，没有，就不开启事务  
 
-> 示例代码：
+> 示例项目：ymdx-spring -> spring-aop-transaction-customize  
 
-### Spring事务传播行为  
+#### Spring事务传播行为  
 Spring中事务的定义：  
 Propagation（key属性确定代理应该给哪个方法增加事务行为。这样的属性最重要的部份是传播行为。）有以下选项可供使用：  
 - PROPAGATION_REQUIRED：如果当前有事务，就用当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择。  
@@ -326,6 +331,8 @@ Propagation（key属性确定代理应该给哪个方法增加事务行为。这
 - PROPAGATION_NEVER：以非事务方式执行，如果当前存在事务，则抛出异常。  
 
 默认传播行为为PROPAGATION_REQUIRED  
+
+<hr>
 
 ### SpringIOC原理  
 

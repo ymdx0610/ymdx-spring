@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
  * @Version: 1.0
  **/
 
-@Target({ElementType.ANNOTATION_TYPE,ElementType.METHOD})
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MyAnnotation {
 
