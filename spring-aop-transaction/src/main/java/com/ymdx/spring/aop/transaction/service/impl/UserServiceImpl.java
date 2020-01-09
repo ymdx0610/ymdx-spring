@@ -1,5 +1,6 @@
 package com.ymdx.spring.aop.transaction.service.impl;
 
+import com.ymdx.spring.aop.transaction.service.LogService;
 import com.ymdx.spring.aop.transaction.service.UserService;
 import com.ymdx.spring.aop.transaction.util.TransactionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private TransactionUtil transactionUtil;
+
+    @Autowired
+    private LogService logService;
 
 //    @Override
 //    public void add() {
@@ -69,8 +73,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
+//    @Transactional(rollbackFor = Exception.class)
     public void add2(){
+        logService.addLog("开始记录日志...");
         String sql = "insert into t_user(name, age) values(?, ?);";
         int ymdx003 = jdbcTemplate.update(sql, "ymdx003", 20);
         if (ymdx003 > 0)
@@ -80,6 +85,7 @@ public class UserServiceImpl implements UserService {
         int ymdx004 = jdbcTemplate.update(sql, "ymdx004", 21);
         if (ymdx004 > 0)
             System.out.println("ymdx004插入成功！");
+        logService.addLog("记录日志结束。");
     }
 
 }

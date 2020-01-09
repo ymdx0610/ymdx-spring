@@ -20,6 +20,9 @@ public class Main {
 //        userService.add();
 
         // @Transactional 声明式事务
+//        userService.add2();
+
+        // 事务的传播行为：logService#addLog
         userService.add2();
     }
 
