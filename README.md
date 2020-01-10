@@ -396,13 +396,13 @@ JSON是轻量级交换格式，xml占宽带小。
 很多银行项目，大多数还是在使用xml。  
 
 #### 什么是SpringIOC  
-spring ioc指的是控制反转，IOC容器负责实例化、定位、配置应用程序中的对象及建立这些对象间的依赖。交由Spring来管理这些，实现解耦  
+spring ioc指的是控制反转，IOC容器负责实例化、定位、配置应用程序中的对象及建立这些对象间的依赖，交由Spring来管理这些，实现解耦  
 
 #### SpringIOC原理
 使用反射机制 + XML技术  
 
 #### 手写SpringIOC XML版本
-> 示例代码：
+> 示例项目：ymdx-spring -> spring-ioc-xml  
 
 #### 手写SpringIOC 注解版本
 > 示例代码：

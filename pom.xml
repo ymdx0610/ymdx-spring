@@ -51,6 +51,7 @@
         <dubbo.version>2.6.7</dubbo.version>
         <netty.version>4.1.42.Final</netty.version>
         <cglib.version>3.3.0</cglib.version>
+        <dom4j.version>1.6.1</dom4j.version>
         <junit.version>4.12</junit.version>
     </properties>
 
@@ -60,6 +61,8 @@
         <module>spring-aop-xml</module>
         <module>spring-aop-transaction</module>
         <module>spring-aop-transaction-customize</module>
+        <module>spring-ioc-xml</module>
+        <module>spring-ioc-annotation</module>
     </modules>
 
     <!-- 只定义依赖的版本，不会实际依赖 -->
@@ -292,6 +295,13 @@
                 <groupId>cglib</groupId>
                 <artifactId>cglib</artifactId>
                 <version>${cglib.version}</version>
+            </dependency>
+
+            <!-- dom4j -->
+            <dependency>
+                <groupId>dom4j</groupId>
+                <artifactId>dom4j</artifactId>
+                <version>${dom4j.version}</version>
             </dependency>
 
             <dependency>
