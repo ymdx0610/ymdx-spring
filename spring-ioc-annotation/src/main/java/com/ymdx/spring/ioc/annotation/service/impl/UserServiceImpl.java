@@ -16,12 +16,13 @@ import com.ymdx.spring.ioc.annotation.service.UserService;
 @ExtService
 public class UserServiceImpl implements UserService {
 
-//    @ExtResource
-//    private OrderService orderServiceImpl;
+    @ExtResource
+    private OrderService orderServiceImpl;
 
     @Override
-    public void add() {
+    public void addUser() {
         System.out.println("addUser（使用注解 + 反射技术创建bean）");
+        orderServiceImpl.addOrder();
     }
 
 }

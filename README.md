@@ -82,10 +82,14 @@ Cglib 、javassist（字节码操作库）
 
 1）原理：是根据类加载器和接口创建代理类（此代理类是接口的实现类，所以必须使用接口 面向接口生成代理，位于java.lang.reflect包下）  
 2）实现方式：  
-1. 通过实现InvocationHandler接口创建自己的调用处理器```InvocationHandler handler = new InvocationHandlerImpl(…);```   
-2. 通过为Proxy类指定ClassLoader对象和一组interface创建动态代理类```Class clazz = Proxy.getProxyClass(classLoader,new Class[]{…});```   
-3. 通过反射机制获取动态代理类的构造函数，其参数类型是调用处理器接口类型```Constructor constructor = clazz.getConstructor(new Class[]{InvocationHandler.class});```   
-4. 通过构造函数创建代理类实例，此时需将调用处理器对象作为参数被传入```Interface proxy = (Interface)constructor.newInstance(new Object[] (handler));```    
+1. 通过实现InvocationHandler接口创建自己的调用处理器  
+```InvocationHandler handler = new InvocationHandlerImpl(…);```   
+2. 通过为Proxy类指定ClassLoader对象和一组interface创建动态代理类  
+```Class clazz = Proxy.getProxyClass(classLoader,new Class[]{…});```   
+3. 通过反射机制获取动态代理类的构造函数，其参数类型是调用处理器接口类型  
+```Constructor constructor = clazz.getConstructor(new Class[]{InvocationHandler.class});```   
+4. 通过构造函数创建代理类实例，此时需将调用处理器对象作为参数被传入  
+```Interface proxy = (Interface)constructor.newInstance(new Object[] (handler));```    
 缺点：jdk动态代理，必须是面向接口，目标业务类必须实现接口  
 
 - CGLIB动态代理  
@@ -405,13 +409,7 @@ spring ioc指的是控制反转，IOC容器负责实例化、定位、配置应�
 > 示例项目：ymdx-spring -> spring-ioc-xml  
 
 #### 手写SpringIOC 注解版本
-> 示例代码：
-
-#### 常用反射工具类
-
-#### Maven相关依赖
-
-#### SpringIOC容器核心接口
+> 示例项目：ymdx-spring -> spring-ioc-annotation   
 
 <hr>  
 

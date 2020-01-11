@@ -1,10 +1,14 @@
 package com.ymdx.spring.ioc.annotation.container;
 
+import com.ymdx.spring.ioc.annotation.ext.ExtResource;
 import com.ymdx.spring.ioc.annotation.ext.ExtService;
 import com.ymdx.spring.ioc.annotation.util.ReflectionUtil;
 import org.apache.commons.lang3.StringUtils;
 
+import java.lang.reflect.Field;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -31,6 +35,7 @@ public class MyContainer {
         this.packageName = packageName;
         beans = new ConcurrentHashMap<>();
         initBeans();
+        initDIBeans();
     }
 
     /**
@@ -42,8 +47,8 @@ public class MyContainer {
      * @ExtResource 实现思路
      * 1. 遍历被依赖注入的目标对象的属性
      * 2. 判断属性上是否有@ExtResource注解，若有，获取到该属性名称
-     * 3. 根据属性名称，通过反射技术实例化出注入的对象
-     * 4. 将注入的对象赋值给拥有@ExtResource注解的对应属性
+     * 3. 根据属性名称，从暂存的容器中获取已经实例化的依赖注入的对象
+     * 4. 将依赖注入的对象赋值给拥有@ExtResource注解的对应属性
      *
      */
     public Object getBean(String beanId){
@@ -74,7 +79,7 @@ public class MyContainer {
      * @param clazz
      */
     private void initBean(Class<?> clazz){
-        String clazzName = clazz.getName();
+        String clazzName = clazz.getSimpleName();
         // 将clazzName首字母转化成小写
         String newClazzName = firstCharToLower(clazzName);
         Object obj = null;
@@ -92,5 +97,34 @@ public class MyContainer {
         return tempStr + clazzName.substring(1);
     }
 
+    private void initDIBeans(){
+        // 遍历被依赖注入的目标对象
+        Iterator<Map.Entry<String, Object>> iterator = beans.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, Object> next = iterator.next();
+            Object obj = next.getValue();
+            // 遍历被依赖注入的目标对象的属性
+            Class<?> cls = obj.getClass();
+            Field[] fields = cls.getDeclaredFields();
+            for(Field field : fields){
+                // 判断属性上是否有@ExtResource注解，若有，获取到该属性名称
+                ExtResource extResource = field.getAnnotation(ExtResource.class);
+                if(extResource != null){
+                    String fieldName = field.getName();
+                    try {
+                        // 根据属性名称，从暂存的容器中获取已经实例化的依赖注入的对象
+                        Object diObj = beans.get(fieldName);
+                        // 开放属性访问权限
+                        field.setAccessible(true);
+                        // 将依赖注入的对象赋值给拥有@ExtResource注解的对应属性
+                        field.set(obj, diObj);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        throw new RuntimeException("dependency injection object can't found");
+                    }
+                }
+            }
+        }
+    }
 
 }

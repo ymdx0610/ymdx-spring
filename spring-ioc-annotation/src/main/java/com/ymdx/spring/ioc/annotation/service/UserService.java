@@ -9,5 +9,5 @@ package com.ymdx.spring.ioc.annotation.service;
  * @Version: 1.0
  **/
 public interface UserService {
-    public void add();
+    public void addUser();
 }

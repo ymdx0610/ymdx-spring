@@ -15,8 +15,8 @@ public class Main {
 
     public static void main(String[] args) {
         MyContainer myContainer = new MyContainer("com.ymdx.spring.ioc.annotation.service.impl");
-        UserService userService = (UserService) myContainer.getBean("userService");
-        userService.add();
+        UserService userService = (UserService) myContainer.getBean("userServiceImpl");
+        userService.addUser();
     }
 
 }
