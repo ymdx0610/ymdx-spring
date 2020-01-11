@@ -355,7 +355,23 @@ XML 文档的根元素被称为文档元素，它和在其外部出现的处理�
 
 - XML样例  
 ```xml
-
+<?xml version="1.0" encoding="UTF-8" ?>
+<pepple>
+    <person personid="person1">
+        <name>诸葛亮</name>
+        <address>四川成都</address>
+        <tel>12345678</tel>
+        <fax>12345679</fax>
+        <email>zhugeliang@163.com</email>
+    </person>
+    <person personid="person2">
+        <name>周瑜</name>
+        <address>湖北武汉</address>
+        <tel>987654321</tel>
+        <fax>987654322</fax>
+        <email>zhouyu@126.com</email>
+    </person>
+</pepple>
 ```
 ```<?xml version="1.0" encoding="UTF-8"?>```
 作用xml文件头部要写的话，说明了xml的版本和编码，utf-8一般是网络传输用的编码  
@@ -372,7 +388,7 @@ dom4j不适合大文件的解析，因为它是一下子将文件加载到内存
 1、自己创建Document对象  
 ```java
 Document document = DocumentHelper.createDocument();
-Element root = document.addElement("students");
+Element root = document.addElement("pepple");
 ```
 其中students是根节点，可以继续添加其他节点等操作。  
 
@@ -380,18 +396,18 @@ Element root = document.addElement("students");
 ```java
 // 创建SAXReader对象
 SAXReader reader = new SAXReader();
-// 读取文件 转换成Document
-Document document = reader.read(new File("XXXX.xml"));
+// 读取文件，转换成Document
+Document document = reader.read(new File("XXX.xml"));
 ```
 
 3、读取XML文本内容获取Document对象
 ```java
-String xmlStr = "<students>......</students>";
+String xmlStr = "<pepple>......</pepple>";
 Document document = DocumentHelper.parseText(xmlStr);
 ```
 
 - 解析xml代码  
-> 示例代码：
+> 示例代码：ymdx-spring -> spring-ioc-xml -> Dom4jParseXmlDemo.java  
 
 - XML与JSON区别  
 Xml是重量级数据交换格式，占宽带比较大。  
@@ -405,10 +421,10 @@ spring ioc指的是控制反转，IOC容器负责实例化、定位、配置应�
 #### SpringIOC原理
 使用反射机制 + XML技术  
 
-#### 手写SpringIOC XML版本
+#### 手写SpringIOC（XML版本）
 > 示例项目：ymdx-spring -> spring-ioc-xml  
 
-#### 手写SpringIOC 注解版本
+#### 手写SpringIOC（注解版本）
 > 示例项目：ymdx-spring -> spring-ioc-annotation   
 
 <hr>  
