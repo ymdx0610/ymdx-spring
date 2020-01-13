@@ -512,15 +512,15 @@ destroy()：
 - C3P0  
 C3P0是一个开放源代码的JDBC连接池，它在lib目录中与Hibernate一起发布，包括了实现jdbc3和jdbc2扩展规范说明的Connection和Statement池的DataSources对象。
 
-- BoneCP
+- BoneCP  
 BoneCP是一个开源的快速的JDBC连接池。BoneCP很小，只有四十几K（运行时需要log4j和Google Collections的支持，这二者加起来就不小了），而相比之下C3P0要六百多K。
 另外个人觉得BoneCP有个缺点是，JDBC驱动的加载是在连接池之外的，这样在一些应用服务器的配置上就不够灵活。  
 
-- DBCP
+- DBCP  
 DBCP (Database Connection Pool)是一个依赖Jakarta commons-pool对象池机制的数据库连接本对应的是 JDK 1.4-1.5 和 JDBC 3，而1.4 版本对应 JDK 1.6 和 JDBC 4。
 因此在选择版本的时候要看看你用的是什么 JDK 版本了，功能上倒是没有什么区别。Tomcat的数据源使用的就是DBCP。目前 DBCP 有两个版本分别是 1.3 和 1.4。  
 
-- Proxool
+- Proxool  
 Proxool是一个Java SQL Driver驱动程序，提供了对你选择的其它类型的驱动程序的连接池封装。可以非常简单的移植到现存的代码中。完全可配置。快速，成熟，健壮。可以透明地为你现存的JDBC驱动程序增加连接池功能。  
 
 #### C3P0与DBCP区别  
@@ -530,6 +530,8 @@ c3p0提供最大空闲时间，DBCP提供最大连接数。
 c3p0当连接超过最大空闲连接时间时，当前连接就会被断掉。dbcp当连接数超过最大连接数时，所有连接都会被断。  
 
 #### 手写数据库连接池  
+
+<hr>
 
 
 
