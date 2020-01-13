@@ -2,7 +2,7 @@ package com.ymdx.spring.ioc.annotation.container;
 
 import com.ymdx.spring.ioc.annotation.ext.ExtResource;
 import com.ymdx.spring.ioc.annotation.ext.ExtService;
-import com.ymdx.spring.ioc.annotation.util.ReflectionUtil;
+import com.ymdx.spring.ioc.annotation.util.ClassUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;
@@ -63,7 +63,7 @@ public class MyContainer {
             throw new RuntimeException("packageName is null");
         }
         // 扫描包，获取所有类列表
-        List<Class<?>> classes = ReflectionUtil.getClasses(packageName);
+        List<Class<?>> classes = ClassUtil.getClasses(packageName);
         // 遍历类信息列表，判断类上是否有@ExtService注解
         for (Class<?> clazz : classes){
             ExtService extService = clazz.getAnnotation(ExtService.class);

@@ -14,6 +14,11 @@
     <name>spring-mvc-customize Maven Webapp</name>
 
     <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
         <!-- JSP相关 -->
         <dependency>
             <groupId>jstl</groupId>

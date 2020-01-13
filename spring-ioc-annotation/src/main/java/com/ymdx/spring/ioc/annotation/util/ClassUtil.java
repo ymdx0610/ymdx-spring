@@ -13,14 +13,14 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 /**
- * @ClassName: ReflectionUtil
+ * @ClassName: ClassUtil
  * @Description: 反射工具类
  * @Author: ymdx
  * @Email: y_m_d_x@163.com
  * @Date: 2020-01-10 16:47
  * @Version: 1.0
  **/
-public class ReflectionUtil {
+public class ClassUtil {
 
     /**
      * 获取某个接口下所有实现这个接口的类
@@ -200,6 +200,29 @@ public class ReflectionUtil {
                 }
             }
         }
+    }
+
+    /**
+     * 首字母转小写
+     * @param str
+     * @return
+     */
+    public static String toLowerCaseForFirstChar(String str){
+        if(Character.isLowerCase(str.charAt(0)))
+            return str;
+        else
+            return (new StringBuilder()).append(Character.toLowerCase(str.charAt(0))).append(str.substring(1)).toString();
+    }
+
+    /**
+     * 实例化对象
+     * @param classInfo
+     * @return
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     */
+    public static Object newInstance(Class<?> classInfo) throws IllegalAccessException, InstantiationException {
+        return classInfo.newInstance();
     }
 
 }

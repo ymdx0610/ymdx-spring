@@ -1,4 +1,4 @@
-package com.ymdx.mvc.controller.servlet;
+package com.ymdx.spring.mvc.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

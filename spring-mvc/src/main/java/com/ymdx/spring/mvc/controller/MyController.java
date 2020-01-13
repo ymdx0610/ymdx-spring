@@ -1,4 +1,4 @@
-package com.ymdx.mvc.controller;
+package com.ymdx.spring.mvc.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +17,7 @@ public class MyController {
 
     @RequestMapping("/show")
     public String show(){
-        return "index";
+        return "ok";
     }
 
 }
