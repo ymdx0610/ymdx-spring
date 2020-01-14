@@ -531,6 +531,8 @@ c3p0当连接超过最大空闲连接时间时，当前连接就会被断掉。d
 
 #### 手写数据库连接池  
 
+> 示例项目：ymdx-spring -> spring-dbcp-customize
+
 <hr>  
 
 

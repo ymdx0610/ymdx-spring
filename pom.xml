@@ -66,6 +66,7 @@
         <module>spring-mvc-servlet</module>
         <module>spring-mvc</module>
         <module>spring-mvc-customize</module>
+        <module>spring-dbcp-customize</module>
     </modules>
 
     <!-- 只定义依赖的版本，不会实际依赖 -->
